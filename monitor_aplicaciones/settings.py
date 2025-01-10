@@ -129,6 +129,7 @@ INSTALLED_APPS += [
     'users',
     'crispy_forms',
     'crispy_tailwind',
+    'django_cron',
 ]
 
 LOGIN_URL = '/users/login/'  # Página de inicio de sesión

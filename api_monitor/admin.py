@@ -5,3 +5,5 @@ from .models import ApiEndpoint
 class ApiEndpointAdmin(admin.ModelAdmin):
     list_display = ('name', 'url', 'status', 'last_checked')
     search_fields = ('name', 'url')
+    
+    

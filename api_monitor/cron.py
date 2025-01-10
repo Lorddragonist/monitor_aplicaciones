@@ -4,7 +4,7 @@ import requests
 from django.utils.timezone import now
 
 class CheckApiStatusCronJob(CronJobBase):
-    RUN_EVERY_MINS = 1440  # Cada 24 horas
+    RUN_EVERY_MINS = 5  # Cada n minutos
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'api_monitor.check_api_status'
