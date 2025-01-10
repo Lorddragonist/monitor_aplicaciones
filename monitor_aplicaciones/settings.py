@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,7 +54,7 @@ ROOT_URLCONF = "monitor_aplicaciones.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -123,3 +123,21 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Configuraciones del desarrollo
+
+INSTALLED_APPS += [
+    'api_monitor',
+    'users',
+    'crispy_forms',
+    'crispy_tailwind',
+]
+
+LOGIN_URL = '/users/login/'  # Página de inicio de sesión
+LOGIN_REDIRECT_URL = '/apis/'  # Redirigir después de iniciar sesión
+LOGOUT_REDIRECT_URL = '/users/login/'  # Redirigir después de cerrar sesión
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"

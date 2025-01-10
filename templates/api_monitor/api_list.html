@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}API list{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Mis APIs</h2>
+    <div class="mb-4">
+        <a href="{% url 'api_create' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Agregar nueva API
+        </a>
+    </div>
+    <table class="min-w-full border border-gray-300 rounded-lg">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="py-2 px-4 text-left">Nombre</th>
+                <th class="py-2 px-4 text-left">URL</th>
+                <th class="py-2 px-4 text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for api in apis %}
+            <tr class="border-t">
+                <td class="py-2 px-4">{{ api.name }}</td>
+                <td class="py-2 px-4">
+                    <a href="{{ api.url }}" target="_blank" class="text-blue-500 hover:underline">
+                        {{ api.url }}
+                    </a>
+                </td>
+                <td class="py-2 px-4 text-center space-x-2">
+                    <a href="{% url 'api_update' api.id %}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">
+                        Editar
+                    </a>
+                    <a href="{% url 'api_delete' api.id %}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="py-4 px-4 text-center text-gray-500">
+                    No hay APIs registradas.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}API monitor{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
+    <header class="bg-black text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Mi Aplicación</h1>
+            <nav>
+                <ul class="flex space-x-4">                    
+                    {% if user.is_authenticated %}
+                        <li><a href="/" class="hover:underline">Inicio</a></li>
+                        <li><a href="/users/logout/" class="hover:underline">Logout</a></li>
+                    {% else %}
+                        <li><a href="/users/register/" class="hover:underline">Registro</a></li>
+                        <li><a href="/users/login/" class="hover:underline">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto p-6">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="bg-gray-800 text-white text-center p-4 mt-6">
+        <p>&copy; 2025 Mi Aplicación. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
